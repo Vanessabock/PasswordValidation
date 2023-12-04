@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PasswordValidation {
     public static void main(String[] args) {
         System.out.println("Hello World");
@@ -39,5 +42,11 @@ public class PasswordValidation {
             }
         }
         return false;
+    }
+
+    public static boolean hasSpecialCharacter(String password) {
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(password);
+        return m.find();
     }
 }

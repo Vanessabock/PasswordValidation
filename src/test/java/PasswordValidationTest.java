@@ -99,11 +99,52 @@ class PasswordValidationTest {
     }
 
     @Test
-    public void isCommonlyUsedPasswordTest_when389Hkdb3_thenTFalse(){
+    public void isCommonlyUsedPasswordTest_when389Hkdb3_thenFalse(){
         //GIVEN
         String password = "389Hkdb3";
         //WHEN
         boolean check = PasswordValidation.isCommonlyUsedPassword(password);
+        //THEN
+        assertFalse(check);
+    }
+
+    // Password contains special character test
+    @Test
+    public void hasSpecialCharacterTest_whenSpecialCharacterPlus_thenTrue(){
+        //GIVEN
+        String password = "Knr739+25";
+        //WHEN
+        boolean check = PasswordValidation.hasSpecialCharacter(password);
+        //THEN
+        assertTrue(check);
+    }
+
+    @Test
+    public void hasSpecialCharacterTest_whenSpecialCharacterStar_thenTrue(){
+        //GIVEN
+        String password = "Knr739*25";
+        //WHEN
+        boolean check = PasswordValidation.hasSpecialCharacter(password);
+        //THEN
+        assertTrue(check);
+    }
+
+    @Test
+    public void hasSpecialCharacterTest_whenSpecialCharacterOpenParenthesis_thenTrue(){
+        //GIVEN
+        String password = "Knr739(25";
+        //WHEN
+        boolean check = PasswordValidation.hasSpecialCharacter(password);
+        //THEN
+        assertTrue(check);
+    }
+
+    @Test
+    public void hasSpecialCharacterTest_whenKnr739Jd25_thenFalse(){
+        //GIVEN
+        String password = "Knr739Jd25";
+        //WHEN
+        boolean check = PasswordValidation.hasSpecialCharacter(password);
         //THEN
         assertFalse(check);
     }
