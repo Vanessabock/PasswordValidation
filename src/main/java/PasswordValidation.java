@@ -1,9 +1,11 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 public class PasswordValidation {
     public static void main(String[] args) {
         System.out.println("Hello World");
+        System.out.println(generateRandomPassword());
     }
 
     public static boolean isPasswordLengthMin8(String password) {
@@ -48,5 +50,26 @@ public class PasswordValidation {
         Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(password);
         return m.find();
+    }
+
+    public static String generateRandomPassword(){
+        Random rand = new Random();
+        String setOfChars= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
+        StringBuilder password = new StringBuilder();
+        boolean isValidPassword = false;
+        String pw = "";
+
+        while (!isValidPassword){
+            password.setLength(0);
+            int length = rand.nextInt(5) + 8;
+            for (int i = 0; i < length; i++) {
+                password.append(setOfChars.charAt(rand.nextInt(setOfChars.length())));
+            }
+            pw = password.toString();
+            if (isPasswordLengthMin8(pw) && hasDigits(pw) && hasUppercaseAndLowercaseLetters(pw) && !isCommonlyUsedPassword(pw) && hasSpecialCharacter(pw)){
+                isValidPassword = true;
+            }
+        }
+        return pw;
     }
 }
