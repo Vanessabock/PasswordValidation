@@ -12,4 +12,19 @@ public class PasswordValidation {
         // Check for digits
         return password.matches(".*\\d.*");
     }
+
+    public static boolean hasUppercaseAndLowercaseLetters(String password) {
+        char charValue;
+        boolean uppercase = false, lowercase = false;
+        for (int i = 0; i < password.length(); i++){
+            charValue = password.charAt(i);
+            if (Character.isUpperCase(charValue)){
+                uppercase = true;
+            }
+            if (Character.isLowerCase(charValue)){
+                lowercase = true;
+            }
+        }
+        return uppercase && lowercase;
+    }
 }
