@@ -16,7 +16,7 @@ class PasswordValidationTest {
     }
 
     @Test
-    public void isPasswordLengthMin8Test_whenO38In_thenTrue(){
+    public void isPasswordLengthMin8Test_whenO38In_thenFalse(){
         //GIVEN
         String password = "O38In";
         //WHEN
@@ -37,7 +37,7 @@ class PasswordValidationTest {
 
     // Password contains digits tests
     @Test
-    public void hasDigits_when8048HcIe7_thenTrue(){
+    public void hasDigitsTest_when8048HcIe7_thenTrue(){
         //GIVEN
         String password = "8048KHcIe7";
         //WHEN
@@ -47,7 +47,7 @@ class PasswordValidationTest {
     }
 
     @Test
-    public void hasDigits_whenAbdjvZU_thenTrue(){
+    public void hasDigitsTest_whenAbdjvZU_thenFalse(){
         //GIVEN
         String password = "AbdjvZU";
         //WHEN
@@ -56,9 +56,9 @@ class PasswordValidationTest {
         assertFalse(check);
     }
 
-    // Password contains uppercase and lowercase letters
+    // Password contains uppercase and lowercase letters tests
     @Test
-    public void hasUppercaseAndLowercaseLetters_whenOncje84Hdj_thenTrue(){
+    public void hasUppercaseAndLowercaseLettersTest_whenOncje84Hdj_thenTrue(){
         //GIVEN
         String password = "Oncje84Hdj";
         //WHEN
@@ -68,7 +68,7 @@ class PasswordValidationTest {
     }
 
     @Test
-    public void hasUppercaseAndLowercaseLetters_whenjfjru864_thenTrue(){
+    public void hasUppercaseAndLowercaseLettersTest_whenjfjru864_thenFalse(){
         //GIVEN
         String password = "jfjru864";
         //WHEN
@@ -78,11 +78,32 @@ class PasswordValidationTest {
     }
 
     @Test
-    public void hasUppercaseAndLowercaseLetters_whenHDJ7866GH_thenTrue(){
+    public void hasUppercaseAndLowercaseLettersTest_whenHDJ7866GH_thenFalse(){
         //GIVEN
         String password = "HDJ7866GH";
         //WHEN
         boolean check = PasswordValidation.hasUppercaseAndLowercaseLetters(password);
+        //THEN
+        assertFalse(check);
+    }
+
+    // Password is Commonly Used Password tests
+    @Test
+    public void isCommonlyUsedPasswordTest_whenPassword1_thenTrue(){
+        //GIVEN
+        String password = "Password1";
+        //WHEN
+        boolean check = PasswordValidation.isCommonlyUsedPassword(password);
+        //THEN
+        assertTrue(check);
+    }
+
+    @Test
+    public void isCommonlyUsedPasswordTest_when389Hkdb3_thenTFalse(){
+        //GIVEN
+        String password = "389Hkdb3";
+        //WHEN
+        boolean check = PasswordValidation.isCommonlyUsedPassword(password);
         //THEN
         assertFalse(check);
     }

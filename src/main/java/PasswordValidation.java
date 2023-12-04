@@ -14,6 +14,7 @@ public class PasswordValidation {
     }
 
     public static boolean hasUppercaseAndLowercaseLetters(String password) {
+        // Check for uppercase's and lowercase's
         char charValue;
         boolean uppercase = false, lowercase = false;
         for (int i = 0; i < password.length(); i++){
@@ -26,5 +27,17 @@ public class PasswordValidation {
             }
         }
         return uppercase && lowercase;
+    }
+
+    public static boolean isCommonlyUsedPassword(String password) {
+        // Check if password is commonly used password
+        String[] badPasswords = {"Aa345678", "password", "Password1", "A123456b", "111111Aa",
+                "AbCdEfGh", "ABCD1234", "1234abcd"};
+        for (String badPassword : badPasswords) {
+            if (password.equals(badPassword)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
